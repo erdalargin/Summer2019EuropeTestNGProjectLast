@@ -7,14 +7,34 @@ import org.openqa.selenium.WebElement;
 
 public class TagnameTest {
     public static void main(String[] args) {
+        //open browser
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
+
+        //navigate to website
         driver.get("http://practice.cybertekschool.com/sign_up");
-        WebElement homeLink = driver.findElement(By.className("nav-link"));
-        homeLink.click();
-        driver.get("http://practice.cybertekschool.com/multiple_buttons");
-        WebElement multipleButton = driver.findElement(By.tagName("h3"));
-        System.out.println(multipleButton.getText());
-        driver.quit();
+
+        //enter full name
+        WebElement fullnameInput = driver.findElement(By.tagName("input"));
+        fullnameInput.sendKeys("Mike Smith With TagName");
+
+        //enter email
+        WebElement emailInput = driver.findElement(By.name("email"));
+        emailInput.sendKeys("mike@gmail.com");
+
+        WebElement signUpButton = driver.findElement(By.tagName("button"));
+        signUpButton.click();
+
+        //print the message using tagname locator
+
+        WebElement messageElement = driver.findElement(By.tagName("h3"));
+
+        String message = messageElement.getText();
+
+        System.out.println(message);
+
+        //one shot
+        System.out.println(driver.findElement(By.tagName("h3")).getText());
+
     }
 }
